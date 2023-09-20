@@ -6,14 +6,14 @@ export async function fetchAllRepos(username: string, page = "1") {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
+            Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
           },
         }
       ),
       fetch(`https://api.github.com/users/${username}/repos`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
+          Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
         },
       }),
     ]);
@@ -23,6 +23,9 @@ export async function fetchAllRepos(username: string, page = "1") {
       const errorMessage =
         errorData.message ||
         `Failed to fetch data: ${dataResponse.status} ${dataResponse.statusText}`;
+        throw new Error(
+          `Failed to fetch data: ${dataResponse.status} ${dataResponse.statusText}`
+        );
       return { error: errorMessage, data: null, total_data: 0 };
     }
 
@@ -31,6 +34,9 @@ export async function fetchAllRepos(username: string, page = "1") {
       const errorMessage =
         errorData.message ||
         `Failed to fetch total data: ${totalCountResponse.status} ${totalCountResponse.statusText}`;
+        throw new Error(
+          `Failed to fetch data: ${totalCountResponse.status} ${totalCountResponse.statusText}`
+        );
       return { error: errorMessage, data: null, total_data: 0 };
     }
 

@@ -1,7 +1,7 @@
 import RepositoryDetail from "@/app/components/RepositoryDetail";
 import { fetchRepoById } from "@/app/helpers/fetchRepoById";
 import { GitHubRepository } from "@/types";
-import React from "react";
+import React, { Suspense } from "react";
 
 interface PageProps {
   params: {
@@ -14,7 +14,9 @@ const page = async ({ params: { id } }: PageProps) => {
   const repo = await repoData;
   return (
     <div className="px-8 w-full py-4">
-      {repo ? <RepositoryDetail {...repo} ghlink /> : <p>Loading...</p>}
+      <Suspense fallback={<p>Loading...</p>}>
+        {repo ? <RepositoryDetail {...repo} ghlink /> : <p>Loading...</p>}
+      </Suspense>
     </div>
   );
 };

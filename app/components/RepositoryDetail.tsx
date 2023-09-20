@@ -1,13 +1,9 @@
-"use client";
-
 import { GitHubRepository } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { fetchLanguages } from "../helpers/fetchLanguages";
+import React from "react";
 import { AiOutlineStar } from "react-icons/ai";
 import formatDate from "../helpers/formatDate";
-import LanguageTag from "./LanguageTag";
 import { getCircleColor } from "../helpers/getCircleColor";
 
 interface RepositoryDetailProps extends GitHubRepository {
@@ -26,18 +22,19 @@ const RepositoryDetail: React.FC<RepositoryDetailProps> = ({
   languages_url,
   ghlink,
 }) => {
-  const [languages, setLanguages] = useState<string[]>([]);
+  // const [languages, setLanguages] = useState<string[]>([]);
 
-  useEffect(() => {
-    fetchLanguages(languages_url)
-      .then((data) => {
-        const languageNames = Object.keys(data);
-        setLanguages(languageNames);
-      })
-      .catch((error) => {
-        console.error("Error fetching languages:", error);
-      });
-  }, [languages_url]);
+  // useEffect(() => {
+  //   if (!languages_url) return;
+  //   fetchLanguages(languages_url)
+  //     .then((data) => {
+  //       const languageNames = Object.keys(data);
+  //       setLanguages(languageNames);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching languages:", error);
+  //     });
+  // }, [languages_url]);
 
   const renderBottomPanel = () => (
     <div className="flex gap-2">
@@ -95,9 +92,9 @@ const RepositoryDetail: React.FC<RepositoryDetailProps> = ({
       </div>
       <p>{description}</p>
       <div className="flex gap-2 flex-wrap">
-        {languages?.map((lang) => (
+        {/* {languages?.map((lang) => (
           <LanguageTag key={lang} language={lang} />
-        ))}
+        ))} */}
       </div>
       {renderBottomPanel()}
     </div>

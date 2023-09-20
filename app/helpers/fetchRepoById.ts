@@ -4,9 +4,9 @@ export async function fetchRepoById(id: string) {
     headers: {
       Authorization: `Bearer ${
         process.env.GITHUB_KEY ||
-        "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"
+        "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"
       }`,
-      "User-Agent": "next-gh",
+      "User-Agent": "my-app",
     },
   });
 
