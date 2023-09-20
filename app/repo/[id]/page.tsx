@@ -10,8 +10,6 @@ interface PageProps {
   };
 }
 
-// Explicitly define the type for the fetchRepoById function
-
 const RepoPage = async ({ params: { id } }: PageProps) => {
   const repoData: Promise<GitHubRepository> = fetchRepoById(id);
   const repo = await repoData;
@@ -25,12 +23,3 @@ const RepoPage = async ({ params: { id } }: PageProps) => {
 };
 
 export default RepoPage;
-
-// export async function generateStaticParams() {
-//   const postsData: Promise<fetchResponse> = fetchAllRepos("vanyadev");
-//   const posts = await postsData;
-//   if (!posts.data) return;
-//   return posts.data.map((post) => ({
-//     id: post.id.toString(),
-//   }));
-// }
