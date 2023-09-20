@@ -1,6 +1,7 @@
 import RepositoryDetail from "@/app/components/RepositoryDetail";
-import { fetchRepoById } from "@/app/helpers/fetchRepoById";
-import { GitHubRepository } from "@/types";
+import { fetchAllRepos } from "@/app/helpers/fetchAllRepos";
+import fetchRepoById from "@/app/helpers/fetchRepoById";
+import { GitHubRepository, fetchResponse } from "@/types";
 import React, { Suspense } from "react";
 
 interface PageProps {
@@ -9,7 +10,9 @@ interface PageProps {
   };
 }
 
-const page = async ({ params: { id } }: PageProps) => {
+// Explicitly define the type for the fetchRepoById function
+
+const RepoPage = async ({ params: { id } }: PageProps) => {
   const repoData: Promise<GitHubRepository> = fetchRepoById(id);
   const repo = await repoData;
   return (
@@ -21,4 +24,13 @@ const page = async ({ params: { id } }: PageProps) => {
   );
 };
 
-export default page;
+export default RepoPage;
+
+// export async function generateStaticParams() {
+//   const postsData: Promise<fetchResponse> = fetchAllRepos("vanyadev");
+//   const posts = await postsData;
+//   if (!posts.data) return;
+//   return posts.data.map((post) => ({
+//     id: post.id.toString(),
+//   }));
+// }

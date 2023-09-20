@@ -4,9 +4,9 @@ export async function fetchLanguages(languages_url: string) {
     headers: {
       Authorization: `Bearer ${
         process.env.GITHUB_KEY ||
-        "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"
+        "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"
       }`,
-      'User-Agent': 'request'
+      "User-Agent": "my-app",
     },
   });
 

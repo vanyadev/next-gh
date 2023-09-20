@@ -1,10 +1,11 @@
 import { GitHubRepository } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import { AiOutlineStar } from "react-icons/ai";
 import formatDate from "../helpers/formatDate";
 import { getCircleColor } from "../helpers/getCircleColor";
+import Languages from "./Languages";
 
 interface RepositoryDetailProps extends GitHubRepository {
   ghlink?: boolean;
@@ -22,20 +23,6 @@ const RepositoryDetail: React.FC<RepositoryDetailProps> = ({
   languages_url,
   ghlink,
 }) => {
-  // const [languages, setLanguages] = useState<string[]>([]);
-
-  // useEffect(() => {
-  //   if (!languages_url) return;
-  //   fetchLanguages(languages_url)
-  //     .then((data) => {
-  //       const languageNames = Object.keys(data);
-  //       setLanguages(languageNames);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching languages:", error);
-  //     });
-  // }, [languages_url]);
-
   const renderBottomPanel = () => (
     <div className="flex gap-2">
       {language && (
@@ -91,11 +78,9 @@ const RepositoryDetail: React.FC<RepositoryDetailProps> = ({
         </button>
       </div>
       <p>{description}</p>
-      <div className="flex gap-2 flex-wrap">
-        {/* {languages?.map((lang) => (
-          <LanguageTag key={lang} language={lang} />
-        ))} */}
-      </div>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Languages languages_url={languages_url} />
+      </Suspense>
       {renderBottomPanel()}
     </div>
   );
