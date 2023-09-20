@@ -6,14 +6,14 @@ export async function fetchAllRepos(username: string, page = "1") {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
+            Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
           },
         }
       ),
       fetch(`https://api.github.com/users/${username}/repos`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
+          Authorization: `Bearer ${process.env.GITHUB_KEY || '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'}`,
         },
       }),
     ]);

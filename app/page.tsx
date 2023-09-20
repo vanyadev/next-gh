@@ -24,15 +24,11 @@ export default async function Home({
 
   return (
     <>
-      <Header />
-      <main className="flex">
-        <Sidebar />
-        <RepositoryList
-          repos={repos.data}
-          error={repos.error}
-          total={repos.total_data}
-        />
-      </main>
+      <RepositoryList
+        repos={repos.data}
+        error={repos.error}
+        total={repos.total_data}
+      />
     </>
   );
 }
